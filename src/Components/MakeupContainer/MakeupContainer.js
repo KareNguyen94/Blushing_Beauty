@@ -9,7 +9,7 @@ const MakeupContainer = ({allMakeup}) => {
   });
   return(
   <section className='makeup-container'>{cards}</section>
-  )
-}
+  );
+};
 
 export default MakeupContainer;
