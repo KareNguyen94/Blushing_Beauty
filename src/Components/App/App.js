@@ -2,6 +2,7 @@ import React, {  Component } from 'react';
 import './App.css';
 import { fetchMakeupData } from '../../ApiCalls/AipCalls'
 import MakeupContainer from '../MakeupContainer/MakeupContainer';
+import Header from '../Header/Header';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <MakeupContainer allMakeup={this.state.allMakeup}/>
       </div>
     );

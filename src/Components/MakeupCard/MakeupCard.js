@@ -5,8 +5,8 @@ export const MakeupCard = ({makeup}) => {
   return(
     <article className='makeup-card'>
       <img className='makeup-image' src={makeup.image_link}></img>
-      <h2>{makeup.brand}</h2>
-      <h3 className='makeup-name'>{makeup.name}</h3>
+      <h3>{makeup.brand}</h3>
+      <p className='makeup-name'>{makeup.name}</p>
     </article>
   );
 };
