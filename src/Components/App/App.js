@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {  Component } from 'react';
 import './App.css';
+import { fetchMakeupData } from '../../ApiCalls/AipCalls'
+import MakeupContainer from '../MakeupContainer/MakeupContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>hi</h1>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allMakeup: []
+    }
+  }
+
+  componentDidMount = () => {
+    fetchMakeupData()
+      .then(makeupData => this.setState({allMakeup:  [...makeupData]}))
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <MakeupContainer allMakeup={this.state.allMakeup}/>
+      </div>
+    );
+  }
 }
+
 
 export default App;
