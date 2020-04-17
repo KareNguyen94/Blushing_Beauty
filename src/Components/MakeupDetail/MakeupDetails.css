@@ -1,0 +1,15 @@
+.product-image {
+  width: 310px;
+  height: 320px;
+  padding-right: 30px;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: row;
+  padding: 40px;    
+}
+
+.product-name {
+  margin: 0px;
+}
