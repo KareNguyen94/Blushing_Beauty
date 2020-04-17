@@ -3,29 +3,41 @@ import './App.css';
 import { fetchMakeupData } from '../../ApiCalls/AipCalls'
 import MakeupContainer from '../MakeupContainer/MakeupContainer';
 import Header from '../Header/Header';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getMakeup } from '../../actions';
+import { Route } from 'react-router-dom';
+import MakeupDetail from '../MakeupDetail/MakeupDetail'
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      allMakeup: []
-    }
   }
 
   componentDidMount = () => {
+    const { getMakeup } = this.props
     fetchMakeupData()
-      .then(makeupData => this.setState({allMakeup:  [...makeupData]}))
+      .then(makeupData => {
+        getMakeup(makeupData)
+      })
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
-        <MakeupContainer allMakeup={this.state.allMakeup}/>
+          <Header />
+        <Route path='/' exact>
+          <MakeupContainer />
+        </Route>
+        <Route path='/product/:product_id' exact component={MakeupDetail}>
+        </Route>
       </div>
     );
   }
 }
 
+const mapDispatchToProps = (dispatch) => 
+  bindActionCreators({ getMakeup }, dispatch);
 
-export default App;
+
+export default connect(null, mapDispatchToProps)(App);
