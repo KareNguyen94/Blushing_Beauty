@@ -4,8 +4,8 @@ import { fetchMakeupData } from '../../ApiCalls/AipCalls';
 import MakeupContainer from '../MakeupContainer/MakeupContainer';
 import Header from '../Header/Header';
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getMakeup } from '../../actions';
+import { bindActionCreators } from 'redux';
+import { getMakeup, fetchError } from '../../actions';
 import { Route } from 'react-router-dom';
 import MakeupDetail from '../MakeupDetail/MakeupDetail';
 import FavoriteContainer from '../FavoriteContainer/FavoriteContainer';
@@ -16,19 +16,22 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    const { getMakeup } = this.props
+    const { getMakeup, fetchError } = this.props
     fetchMakeupData()
       .then(makeupData => {
         getMakeup(makeupData)
-      });
+      })
+      .catch(errorMessage => {
+       fetchError(errorMessage.message)
+      })
   };
 
   render() {
     return (
       <div className="App">
-          <Header />
+        <Header />
         <Route path='/' exact>
-          <MakeupContainer />
+          {!this.props.error.isError ? <MakeupContainer /> : <h2>ERROR:  {this.props.error.errorMessage} </h2>}
         </Route>
         <Route path='/product/:product_id' exact component={MakeupDetail}>
         </Route>
@@ -40,7 +43,10 @@ class App extends Component {
   };
 };
 
-const mapDispatchToProps = (dispatch) => 
-  bindActionCreators({ getMakeup }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ getMakeup, fetchError }, dispatch);
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = ({error}) => ({
+  error
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

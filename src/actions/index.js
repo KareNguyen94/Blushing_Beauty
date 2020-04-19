@@ -17,3 +17,8 @@ export const removeFavoriteProduct = (makeup) => ({
   type: "REMOVE_FAVORITE",
   makeup
 });
+
+export const fetchError = (text) => ({
+  type: "FETCH_ERROR",
+  text
+});
