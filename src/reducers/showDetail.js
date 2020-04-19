@@ -4,5 +4,5 @@ export const showDetail = (state = {}, action) => {
       return action.id;
     default:
       return state;
-  }
+  };
 };

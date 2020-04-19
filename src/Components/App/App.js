@@ -1,26 +1,27 @@
 import React, {  Component } from 'react';
 import './App.css';
-import { fetchMakeupData } from '../../ApiCalls/AipCalls'
+import { fetchMakeupData } from '../../ApiCalls/AipCalls';
 import MakeupContainer from '../MakeupContainer/MakeupContainer';
 import Header from '../Header/Header';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getMakeup } from '../../actions';
 import { Route } from 'react-router-dom';
-import MakeupDetail from '../MakeupDetail/MakeupDetail'
+import MakeupDetail from '../MakeupDetail/MakeupDetail';
+import FavoriteContainer from '../FavoriteContainer/FavoriteContainer';
 
 class App extends Component {
   constructor(props) {
     super(props);
-  }
+  };
 
   componentDidMount = () => {
     const { getMakeup } = this.props
     fetchMakeupData()
       .then(makeupData => {
         getMakeup(makeupData)
-      })
-  }
+      });
+  };
 
   render() {
     return (
@@ -31,13 +32,15 @@ class App extends Component {
         </Route>
         <Route path='/product/:product_id' exact component={MakeupDetail}>
         </Route>
+        <Route path='/favorites' exact>
+          <FavoriteContainer />
+        </Route>
       </div>
     );
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => 
   bindActionCreators({ getMakeup }, dispatch);
-
 
 export default connect(null, mapDispatchToProps)(App);

@@ -35,7 +35,7 @@ const MakeupContainer = (makeup) => {
 };
 
 const mapStateToProps = ({makeup}) => ({
-  makeup
+  makeup,
 });
 
 
