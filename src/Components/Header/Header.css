@@ -7,4 +7,22 @@
   border-bottom: 15px solid black;
   padding-bottom: 20px;
   margin: 0px;
+  margin-top: -15px;
+}
+
+.fav-button,
+.fav-button2 {
+  display: flex;
+  padding: 5px;
+  border: 2px solid pink;
+  border-radius: 5px;
+}
+
+.fav-button {
+  margin-left: 10px;
+}
+
+h1 {
+  margin: 0px;
+  margin-top: 10px;
 }

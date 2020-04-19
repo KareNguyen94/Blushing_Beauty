@@ -1,4 +1,5 @@
-.makeup-container {
+.makeup-container,
+.fav-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

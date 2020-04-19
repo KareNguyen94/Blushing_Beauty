@@ -4,5 +4,5 @@ export const makeup = (state = [], action) => {
       return action.makeup;
     default:
       return state;
-  }
+  };
 };
