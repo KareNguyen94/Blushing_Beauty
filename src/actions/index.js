@@ -22,3 +22,8 @@ export const fetchError = (text) => ({
   type: "FETCH_ERROR",
   text
 });
+
+export const changeColor = (className) => ({
+  type: "CHANGE_COLOR",
+  className
+})
