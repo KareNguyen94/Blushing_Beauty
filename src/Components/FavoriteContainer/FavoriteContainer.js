@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './FavoriteContainer.css';
 import { connect } from 'react-redux';
 import MakeupCard from '../MakeupCard/MakeupCard';
+import PropTypes from 'prop-types';
 
 class FavoriteContainer extends Component {
   constructor(props) {

@@ -21,7 +21,11 @@ const MakeupContainer = (makeup) => {
           <img className='photo' src={powder}></img>
         </div>
         <div>
-          <img className='photo-lips' src={lips}></img>
+          <img 
+          className='photo-lips' 
+          src={lips}
+          alt='makeup-image'
+          ></img>
         </div>
         <div className='photo-div'>
           <img className='photo' src={nailPolish}></img>

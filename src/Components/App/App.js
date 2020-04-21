@@ -31,7 +31,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Route path='/' exact>
-          {!this.props.error.isError ? <MakeupContainer /> : <h2>ERROR:  {this.props.error.errorMessage} </h2>}
+          {!this.props.error.isError ? <MakeupContainer /> : <h2>ERROR: {this.props.error.errorMessage} </h2>}
         </Route>
         <Route path='/product/:product_id' exact component={MakeupDetail}>
         </Route>
@@ -43,7 +43,7 @@ class App extends Component {
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getMakeup, fetchError }, dispatch);
+export const mapDispatchToProps = (dispatch) => bindActionCreators({ getMakeup, fetchError }, dispatch);
 
 const mapStateToProps = ({error}) => ({
   error

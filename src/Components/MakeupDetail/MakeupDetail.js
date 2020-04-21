@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './MakeupDetails.css';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addFavoriteProduct, removeFavoriteProduct } from '../../actions';
+import { addFavoriteProduct, removeFavoriteProduct, changeColor } from '../../actions';
+import PropTypes from 'prop-types';
 
 class MakeupDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       product: null,
-      isFavorited: false,
     };
   };
 
@@ -29,10 +29,10 @@ class MakeupDetail extends Component {
     let foundProduct = this.props.makeup.find(mu => mu.id == id)
     if(this.props.favorite.includes(foundProduct)) {
       this.props.removeFavoriteProduct(foundProduct)
-      this.setState({isFavorited: false})
+      this.props.changeColor('fav-button2')
     } else {
       this.props.addFavoriteProduct(foundProduct)
-      this.setState({isFavorited: true})
+      this.props.changeColor('background-pink')
     };
   };
 
@@ -48,7 +48,11 @@ class MakeupDetail extends Component {
         <img className='product-image' src={product.image_link}></img>
         <p>Price: ${product.price}</p>
         {!product.rating ? <p>Rating: Not yet rated.</p> : <p>Rating: {product.rating} out of 5</p>}
-        <button id={product.id} className={this.state.isFavorited ? 'background-pink' : 'background-none' && 'fav-button2' }  onClick={(e) => this.onFavoriteClick(e.target.id)}>💖Favorite💖</button>
+        <button 
+        id={product.id} 
+        aria-label="Favorite product"
+        className={this.props.color}  
+        onClick={(e) => this.onFavoriteClick(e.target.id)}>💖Favorite💖</button>
       </div>
       <div>
         <h3 className='product-name'>{product.brand}</h3>
@@ -61,10 +65,17 @@ class MakeupDetail extends Component {
 
 const mapStateToProps = (state) => ({
   makeup: state.makeup,
-  favorite: state.favorite
+  favorite: state.favorite,
+  color: state.color
 });
 
-const mapDispatchToProps = (dispatch) => 
-  bindActionCreators({ addFavoriteProduct, removeFavoriteProduct }, dispatch);
+export const mapDispatchToProps = (dispatch) => 
+  bindActionCreators({ addFavoriteProduct, removeFavoriteProduct, changeColor }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MakeupDetail);
+
+MakeupDetail.propTypes = {
+  makeup: PropTypes.array,
+  favorites: PropTypes.array,
+  onFavoriteClick: PropTypes.func
+}

@@ -7,15 +7,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { RootReducer } from './reducers/index';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const store = createStore(RootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

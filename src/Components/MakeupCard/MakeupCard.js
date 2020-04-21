@@ -1,6 +1,7 @@
 import React from 'react';
 import './MakeupCard.css';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const MakeupCard = ({makeup}) => {
 
@@ -18,3 +19,7 @@ const MakeupCard = ({makeup}) => {
 };
 
 export default (MakeupCard);
+
+MakeupCard.propTypes = {
+  makeup: PropTypes.array,
+}
