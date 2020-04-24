@@ -1,5 +1,13 @@
 language: node_js
 node_js:
-  - "node"
+- node
 notifications:
   email: false
+  deploy: 
+  provider: heroku
+deploy:
+  api_key:
+    secure: Z8bBRZROrWQiOaUkh5IGYPeQR0UvEVkk9cmuHDMUBxuN2FGEH2F6nm6ULp55HwBy5JoNfB7xtP6piPAuZTl4+V/AreQ3B5pMhQiDEqNYpXFrKnNJQ6a2IzujOtaPQmKCzAEmyqYf465yoIN4yLPlR2GZqTtbS701DNPQz0P2d+8HdVw5f5wiLbUB665PUAipd1OFurAd5WzN5wcomsQQHKgw73fXgYJCatLbWEVdX82ngNzNu+mCgObsdSnmLBN59N8SHdwnkPE8SArxBjAIMBoWy2yNj5fHH/J29LB6jI2nticVLeR2ZGB/coswpBukwNmRMPVgZEzedbv4wmCwNTAZ1kSVsXkSLR+8xpqOB0KVtywdg9/GMvb8HmmyhCZ4VfHBXJC0Vxq7phVlnLjdGwZ1fVWYDMERdOwrU+nNLZmwbglrY5SVPhZjusEILcS5x9Xh9rdFcAZh5Afa4Q0+xuI2SHgR9PmudtJomWffFRTdSkr58Nmi8QtHXmylfsyTfIJ88+2DaJGqt1pvb0J0tsec9d9TcN2rdyB8NA75qjTL5zMnR327k9bDWuIVE0dq4kjFk3Mt+/Ala62odYZUguWoW0LFfIlLf99b3C9jvUAmAPAMq7EH8e/iKBx4M5orciOWr8kXzov7UaYpnJLUvfhXotwnjrjoeKCU6cP0fQw=
+    app: Blushing_Beauty
+    skip_cleanup: true
+
