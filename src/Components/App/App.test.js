@@ -3,26 +3,19 @@ import { render, waitFor, fireEvent } from '@testing-library/react';
 import App from './App';
 import { mapDispatchToProps } from './App';
 import { getMakeup, fetchError } from '../../actions';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { RootReducer } from "../../reducers";
 import { fetchMakeupData } from '../../ApiCalls/AipCalls';
-jest.mock('../../ApiCalls/AipCalls')
+// jest.mock('../../ApiCalls/AipCalls')÷\
 
 describe('App', () => {
   let store, wrapper, initialState;
   beforeEach(async () => {
     jest.clearAllMocks();
     initialState = {
-      error: {
-        errorMessage: 'fetch failed',
-        isError: true
-      }
-    };
-    store = createStore(RootReducer, initialState);
-    fetchMakeupData.mockResolvedValue({
       makeup: [
         {
           id: 1,
@@ -36,8 +29,23 @@ describe('App', () => {
           brand: 'mockBrand2',
           name: 'mockName2'
         },
+      ],
+      error: {
+        errorMessage: '',
+        isError: false
+      },
+      favorite: [
+        {
+          id: 1,
+          image_link: 'https://mockUrl',
+          brand: 'mockBrand',
+          name: 'mockName'
+        }
       ]
-    });
+    };
+    store = createStore(RootReducer, initialState);
+    // await fetchMakeupData.mockResolvedValue([
+    // ]);
     const history = createMemoryHistory();
     wrapper =
       <Provider store={store}>
@@ -49,8 +57,31 @@ describe('App', () => {
 
   it('can render the App', () => {
     const{ getByText } = render(wrapper);
-    let title = getByText('BLUSHING BEAUTY');
+    const title = getByText('BLUSHING BEAUTY');
     expect(title).toBeInTheDocument();
+  });
+
+  it('should be able to view favorites', async () => {
+    const{ getByText, getByRole } = render(wrapper);
+     await waitFor(() => {       
+     expect(getByText('💖Your Favorites!💖')).toBeInTheDocument()
+     fireEvent.click(getByText('💖Your Favorites!💖'))
+    });
+    // waiting for button to click and finish
+   
+  const brand = getByText('mockBrand');
+  expect(brand).toBeInTheDocument();
+  });
+
+  it('should be able to view product', async () => {
+    const{ getByText, getByRole } = render(wrapper);
+
+    await waitFor(() => {
+      expect(getByText('mockBrand')).toBeInTheDocument()
+    });
+
+    const brand = getByText('mockBrand');
+    expect(brand).toBeInTheDocument();
   });
 });
 

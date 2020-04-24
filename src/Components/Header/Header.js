@@ -8,10 +8,10 @@ const Header = () => {
       <h1>BLUSHING BEAUTY</h1>
       <div>
         <Link
-        to={'/favorites/'}
+        to={'/favorites'}
         >
           <button 
-          aria-label = "Your favorite"
+          aria-label="Your favorite"
           className='fav-button'>💖Your Favorites!💖</button>
         </Link>
       </div>

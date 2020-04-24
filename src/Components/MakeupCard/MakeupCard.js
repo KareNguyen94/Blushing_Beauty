@@ -9,7 +9,11 @@ const MakeupCard = ({makeup}) => {
     <Link
       to={'/product/' + makeup.id}
     >
-      <article key={makeup.id} id={makeup.id} className='makeup-card'>
+      <article 
+        key={makeup.id} 
+        id={makeup.id} 
+        aria-label="card"
+        className='makeup-card'>
         <img className='makeup-image' src={makeup.image_link}></img>
         <h3>{makeup.brand}</h3>
         <p className='makeup-name'>{makeup.name}</p>
@@ -21,5 +25,5 @@ const MakeupCard = ({makeup}) => {
 export default (MakeupCard);
 
 MakeupCard.propTypes = {
-  makeup: PropTypes.array,
+  makeup: PropTypes.object,
 }
